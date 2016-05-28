@@ -29,6 +29,7 @@ public class LogOutput {
         return loggerName+".info(\"" + methodName + "\");";
     }
 
+
     public String logValStatement(String varName) {
         return loggerName+".info(\"" + varName + ":\"+(" + varName + "));";
     }
