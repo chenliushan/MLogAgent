@@ -88,11 +88,11 @@ public class ByteCodePMethod extends ByteCodeP {
      * @throws CannotCompileException
      */
     private void logMethod(CtConstructor method) throws CannotCompileException {
-        method.insertBefore(lo.getMethodName(method.getLongName()));
+        method.insertAfter(lo.getMethodName(method.getLongName()));
     }
 
     private void logMethod(CtMethod method) throws CannotCompileException {
-        method.insertAfter(lo.getMethodName(method.getLongName()));
+        method.insertBefore(lo.getMethodName(method.getLongName()));
     }
 
 }
