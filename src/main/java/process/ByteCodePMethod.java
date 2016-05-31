@@ -81,19 +81,41 @@ public class ByteCodePMethod extends ByteCodeP {
         }
     }
 
+    private String getMethodQualifyName(CtBehavior method){
+        StringBuilder sb=new StringBuilder(method.getDeclaringClass().getName());
+        sb.append("#");
+        sb.append(method.getName());
+        sb.append("(");
+        try {
+            CtClass[] methodParameterTypes=method.getParameterTypes();
+            for(int i=0;i<methodParameterTypes.length;i++){
+                sb.append(methodParameterTypes[i].getName());
+                sb.append(",");
+            }
+            if(sb.toString().endsWith(",")){
+                sb.deleteCharAt(sb.length()-1);
+            }
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
+        sb.append(")");
+        return sb.toString();
+    }
     /**
      * insert log into the method body.
      *
      * @param method
      * @throws CannotCompileException
      */
-    private void logMethod(CtConstructor method) throws CannotCompileException {
-        method.insertAfter(lo.getMethodName(method.getLongName()));
+    private void logMethod(CtBehavior method) throws CannotCompileException {
+        method.insertBefore(lo.getMethodName(getMethodQualifyName(method)));
+//        method.insertAfter(lo.getMethodEnd(method.getLongName()));
     }
 
-    private void logMethod(CtMethod method) throws CannotCompileException {
-        method.insertBefore(lo.getMethodName(method.getLongName()));
-    }
+//    private void logMethod(CtMethod method) throws CannotCompileException {
+//        method.insertBefore(lo.getMethodName(method.getLongName()));
+//        method.insertAfter(lo.getMethodEnd(method.getLongName()));
+//    }
 
 }
 

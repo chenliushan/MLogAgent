@@ -28,6 +28,9 @@ public class LogOutput {
     public String getMethodName(String methodName) {
         return loggerName+".info(\"" + methodName + "\");";
     }
+    public String getMethodEnd(String methodName) {
+        return loggerName+".info(\"End:" + methodName + "\");";
+    }
 
 
     public String logValStatement(String varName) {

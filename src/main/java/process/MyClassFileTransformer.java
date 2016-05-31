@@ -21,7 +21,7 @@ public class MyClassFileTransformer implements ClassFileTransformer {
                             Class<?> classBeingRedefined,
                             ProtectionDomain protectionDomain,
                             byte[] classfileBuffer) throws IllegalClassFormatException {
-        if (filterString != null && className.contains(filterString)) {
+        if (filterString != null && className.startsWith(filterString)) {
             System.out.println("className:" + className + " is modified ...");
             return byteCodeP.transformClass(classfileBuffer);
         }
